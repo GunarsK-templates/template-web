@@ -14,27 +14,27 @@ const router = useRouter()
 
 const errorConfig = computed(() => {
   const configs = {
-    '400': {
+    400: {
       status: 'error',
       title: 'Bad Request',
       description: 'The request could not be understood by the server.',
     },
-    '401': {
+    401: {
       status: 'warning',
       title: 'Unauthorized',
       description: 'You need to be logged in to access this page.',
     },
-    '403': {
+    403: {
       status: 'warning',
       title: 'Forbidden',
       description: 'You do not have permission to access this page.',
     },
-    '404': {
+    404: {
       status: 'info',
       title: 'Not Found',
       description: 'The page you are looking for does not exist.',
     },
-    '500': {
+    500: {
       status: 'error',
       title: 'Server Error',
       description: 'Something went wrong on our end. Please try again later.',
@@ -56,10 +56,16 @@ const goBack = () => router.back()
       :description="errorConfig.description"
     >
       <template #footer>
-        <n-button @click="goBack" style="margin-right: 8px">
+        <n-button
+          style="margin-right: 8px"
+          @click="goBack"
+        >
           Go Back
         </n-button>
-        <n-button type="primary" @click="goHome">
+        <n-button
+          type="primary"
+          @click="goHome"
+        >
           Go Home
         </n-button>
       </template>

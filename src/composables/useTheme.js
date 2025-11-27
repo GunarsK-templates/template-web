@@ -27,11 +27,15 @@ export function useTheme() {
   const theme = ref(getInitialTheme())
 
   // Persist theme changes
-  watch(theme, (newTheme) => {
-    localStorage.setItem(STORAGE_KEY, newTheme)
-    // Update document class for global CSS
-    document.documentElement.classList.toggle('dark', newTheme === THEMES.DARK)
-  }, { immediate: true })
+  watch(
+    theme,
+    (newTheme) => {
+      localStorage.setItem(STORAGE_KEY, newTheme)
+      // Update document class for global CSS
+      document.documentElement.classList.toggle('dark', newTheme === THEMES.DARK)
+    },
+    { immediate: true }
+  )
 
   const toggleTheme = () => {
     theme.value = theme.value === THEMES.LIGHT ? THEMES.DARK : THEMES.LIGHT

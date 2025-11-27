@@ -31,22 +31,43 @@ onMounted(fetchItems)
 <template>
   <div class="home-view">
     <h1>Welcome to Your App</h1>
-    <p class="subtitle">This is a Vue 3 template with best practices.</p>
+    <p class="subtitle">
+      This is a Vue 3 template with best practices.
+    </p>
 
-    <n-card title="Items" class="items-card">
+    <n-card
+      title="Items"
+      class="items-card"
+    >
       <template #header-extra>
-        <n-button size="small" @click="fetchItems" :loading="loading">
+        <n-button
+          size="small"
+          :loading="loading"
+          @click="fetchItems"
+        >
           Refresh
         </n-button>
       </template>
 
       <n-spin :show="loading">
-        <n-empty v-if="!loading && items.length === 0" description="No items found" />
+        <n-empty
+          v-if="!loading && items.length === 0"
+          description="No items found"
+        />
 
-        <n-space v-else vertical>
-          <n-card v-for="item in items" :key="item.id" size="small">
+        <n-space
+          v-else
+          vertical
+        >
+          <n-card
+            v-for="item in items"
+            :key="item.id"
+            size="small"
+          >
             <h3>{{ item.name }}</h3>
-            <p v-if="item.description">{{ item.description }}</p>
+            <p v-if="item.description">
+              {{ item.description }}
+            </p>
           </n-card>
         </n-space>
       </n-spin>

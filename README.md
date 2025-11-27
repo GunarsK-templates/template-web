@@ -23,6 +23,7 @@ A Vue 3 web application template with best practices.
 
 - Node.js 22+
 - npm 10+
+- [Task](https://taskfile.dev/) (optional, for task runner)
 
 ### Installation
 
@@ -84,23 +85,50 @@ src/
 
 ## Development
 
-### Available Scripts
+### Task Commands
+
+Using [Task](https://taskfile.dev/) runner (recommended):
 
 ```bash
+# Install dependencies
+task install
+
 # Start development server
-npm run dev
+task dev
 
 # Build for production
-npm run build
+task build
 
 # Preview production build
-npm run preview
+task preview
 
-# Lint code
-npm run lint
+# Lint and auto-fix
+task lint
 
 # Format code
-npm run format
+task format
+
+# Run all CI checks
+task ci:all
+
+# Build Docker image
+task docker:build
+
+# Run Docker container
+task docker:run
+
+# Clean build artifacts
+task clean
+```
+
+### npm Scripts
+
+```bash
+npm run dev       # Start development server
+npm run build     # Build for production
+npm run preview   # Preview production build
+npm run lint      # Lint and auto-fix
+npm run format    # Format code
 ```
 
 ### Adding a New Page
@@ -169,17 +197,22 @@ store.removeItem(1)
 
 ## Docker
 
-### Build
+### Using Task
 
 ```bash
+task docker:build
+task docker:run
+```
+
+### Manual Commands
+
+```bash
+# Build
 docker build \
   --build-arg VITE_API_URL=https://api.example.com \
   -t your-web-app:latest .
-```
 
-### Run
-
-```bash
+# Run
 docker run -p 80:80 your-web-app:latest
 ```
 

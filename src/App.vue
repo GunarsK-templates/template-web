@@ -1,6 +1,6 @@
 <script setup>
-import { computed, onMounted, onUnmounted } from 'vue'
-import { RouterLink, RouterView, useRouter } from 'vue-router'
+import { computed } from 'vue'
+import { RouterLink, RouterView } from 'vue-router'
 import {
   NConfigProvider,
   NNotificationProvider,
@@ -17,7 +17,6 @@ import {
 } from 'naive-ui'
 import { useTheme, THEMES } from '@/composables/useTheme'
 
-const router = useRouter()
 const { theme, toggleTheme, getThemeConfig } = useTheme()
 
 const currentTheme = computed(() => (theme.value === THEMES.DARK ? darkTheme : null))
@@ -30,17 +29,26 @@ const navItems = [
 </script>
 
 <template>
-  <n-config-provider :theme="currentTheme" :theme-overrides="getThemeConfig()">
+  <n-config-provider
+    :theme="currentTheme"
+    :theme-overrides="getThemeConfig()"
+  >
     <n-notification-provider>
       <n-message-provider>
         <n-dialog-provider>
           <n-global-style />
           <n-layout class="app-layout">
             <!-- Header -->
-            <n-layout-header bordered class="app-header">
+            <n-layout-header
+              bordered
+              class="app-header"
+            >
               <div class="header-content">
                 <!-- Logo/Brand -->
-                <RouterLink to="/" class="brand">
+                <RouterLink
+                  to="/"
+                  class="brand"
+                >
                   Your App
                 </RouterLink>
 
@@ -60,7 +68,11 @@ const navItems = [
 
                 <!-- Actions -->
                 <div class="header-actions">
-                  <n-button quaternary circle @click="toggleTheme">
+                  <n-button
+                    quaternary
+                    circle
+                    @click="toggleTheme"
+                  >
                     {{ theme === THEMES.DARK ? '☀️' : '🌙' }}
                   </n-button>
                 </div>
@@ -73,7 +85,10 @@ const navItems = [
             </n-layout-content>
 
             <!-- Footer -->
-            <n-layout-footer bordered class="app-footer">
+            <n-layout-footer
+              bordered
+              class="app-footer"
+            >
               <p>&copy; {{ new Date().getFullYear() }} Your App. All rights reserved.</p>
             </n-layout-footer>
           </n-layout>

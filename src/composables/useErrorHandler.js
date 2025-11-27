@@ -99,7 +99,8 @@ export function useErrorHandler() {
         }
 
         // Wait before retry (exponential backoff)
-        const delay = RETRY_CONFIG.DELAYS[attempt] || RETRY_CONFIG.DELAYS[RETRY_CONFIG.DELAYS.length - 1]
+        const delay =
+          RETRY_CONFIG.DELAYS[attempt] || RETRY_CONFIG.DELAYS[RETRY_CONFIG.DELAYS.length - 1]
         if (delay > 0) {
           await new Promise((resolve) => setTimeout(resolve, delay))
         }

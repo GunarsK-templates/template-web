@@ -1,5 +1,6 @@
 import js from '@eslint/js'
 import pluginVue from 'eslint-plugin-vue'
+import globals from 'globals'
 
 export default [
   {
@@ -10,6 +11,14 @@ export default [
     name: 'app/files-to-ignore',
     ignores: ['**/dist/**', '**/node_modules/**'],
   },
+  {
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+      },
+    },
+  },
   js.configs.recommended,
   ...pluginVue.configs['flat/recommended'],
   {
@@ -17,8 +26,8 @@ export default [
       'vue/multi-word-component-names': 'off',
       'vue/no-unused-vars': 'error',
       'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
-      'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-      'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+      'no-console': 'off',
+      'no-debugger': 'warn',
     },
   },
 ]
