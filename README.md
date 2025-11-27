@@ -1,4 +1,4 @@
-# Your Web App
+# Template Web
 
 A Vue 3 web application template with best practices.
 
@@ -15,7 +15,7 @@ A Vue 3 web application template with best practices.
 - Environment validation
 - Docker support with nginx
 - CI/CD with GitHub Actions
-- Security scanning (npm audit, Trivy)
+- Security scanning (npm audit, Trivy, TruffleHog)
 
 ## Getting Started
 
@@ -29,8 +29,8 @@ A Vue 3 web application template with best practices.
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/your-org/your-web-app.git
-cd your-web-app
+git clone https://github.com/GunarsK-templates/template-web.git
+cd template-web
 ```
 
 2. Install dependencies:
@@ -210,10 +210,10 @@ task docker:run
 # Build
 docker build \
   --build-arg VITE_API_URL=https://api.example.com \
-  -t your-web-app:latest .
+  -t template-web:latest .
 
 # Run
-docker run -p 80:80 your-web-app:latest
+docker run -p 80:80 template-web:latest
 ```
 
 ## Customization
