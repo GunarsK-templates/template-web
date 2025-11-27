@@ -67,7 +67,7 @@ tasks:
   ci:all:
     desc: Run all CI checks
     cmds:
-      - task: format
+      - task: format:check
       - task: lint
       - task: build
       - task: security:audit

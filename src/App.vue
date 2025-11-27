@@ -29,28 +29,17 @@ const navItems = [
 </script>
 
 <template>
-  <n-config-provider
-    :theme="currentTheme"
-    :theme-overrides="getThemeConfig()"
-  >
+  <n-config-provider :theme="currentTheme" :theme-overrides="getThemeConfig()">
     <n-notification-provider>
       <n-message-provider>
         <n-dialog-provider>
           <n-global-style />
           <n-layout class="app-layout">
             <!-- Header -->
-            <n-layout-header
-              bordered
-              class="app-header"
-            >
+            <n-layout-header bordered class="app-header">
               <div class="header-content">
                 <!-- Logo/Brand -->
-                <RouterLink
-                  to="/"
-                  class="brand"
-                >
-                  Your App
-                </RouterLink>
+                <RouterLink to="/" class="brand"> Your App </RouterLink>
 
                 <!-- Navigation -->
                 <nav class="nav-links">
@@ -68,11 +57,7 @@ const navItems = [
 
                 <!-- Actions -->
                 <div class="header-actions">
-                  <n-button
-                    quaternary
-                    circle
-                    @click="toggleTheme"
-                  >
+                  <n-button quaternary circle @click="toggleTheme">
                     {{ theme === THEMES.DARK ? '☀️' : '🌙' }}
                   </n-button>
                 </div>
@@ -85,10 +70,7 @@ const navItems = [
             </n-layout-content>
 
             <!-- Footer -->
-            <n-layout-footer
-              bordered
-              class="app-footer"
-            >
+            <n-layout-footer bordered class="app-footer">
               <p>&copy; {{ new Date().getFullYear() }} Your App. All rights reserved.</p>
             </n-layout-footer>
           </n-layout>
