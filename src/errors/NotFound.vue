@@ -15,7 +15,12 @@ const goHome = () => router.push('/')
       description="The page you are looking for does not exist or has been moved."
     >
       <template #footer>
-        <n-button type="primary" @click="goHome"> Go Home </n-button>
+        <n-button
+          type="primary"
+          @click="goHome"
+        >
+          Go Home
+        </n-button>
       </template>
     </n-result>
   </div>

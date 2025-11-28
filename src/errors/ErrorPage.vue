@@ -56,8 +56,18 @@ const goBack = () => router.back()
       :description="errorConfig.description"
     >
       <template #footer>
-        <n-button style="margin-right: 8px" @click="goBack"> Go Back </n-button>
-        <n-button type="primary" @click="goHome"> Go Home </n-button>
+        <n-button
+          style="margin-right: 8px"
+          @click="goBack"
+        >
+          Go Back
+        </n-button>
+        <n-button
+          type="primary"
+          @click="goHome"
+        >
+          Go Home
+        </n-button>
       </template>
     </n-result>
   </div>

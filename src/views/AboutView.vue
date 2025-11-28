@@ -20,15 +20,25 @@ const features = [
   <div class="about-view">
     <h1>About This Template</h1>
 
-    <n-card title="Features" class="features-card">
+    <n-card
+      title="Features"
+      class="features-card"
+    >
       <n-space wrap>
-        <n-tag v-for="feature in features" :key="feature" type="success">
+        <n-tag
+          v-for="feature in features"
+          :key="feature"
+          type="success"
+        >
           {{ feature }}
         </n-tag>
       </n-space>
     </n-card>
 
-    <n-card title="Getting Started" class="getting-started-card">
+    <n-card
+      title="Getting Started"
+      class="getting-started-card"
+    >
       <ol>
         <li>Clone the template</li>
         <li>Run <code>npm install</code></li>
@@ -38,7 +48,10 @@ const features = [
       </ol>
     </n-card>
 
-    <n-card title="Project Structure" class="structure-card">
+    <n-card
+      title="Project Structure"
+      class="structure-card"
+    >
       <pre><code>src/
 ├── components/     # Reusable UI components
 ├── composables/    # Vue composables (hooks)

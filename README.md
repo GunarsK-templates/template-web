@@ -28,27 +28,31 @@ A Vue 3 web application template with best practices.
 ### Installation
 
 1. Clone the repository:
-```bash
-git clone https://github.com/GunarsK-templates/template-web.git
-cd template-web
-```
+
+   ```bash
+   git clone https://github.com/GunarsK-templates/template-web.git
+   cd template-web
+   ```
 
 2. Install dependencies:
-```bash
-npm install
-```
+
+   ```bash
+   npm install
+   ```
 
 3. Copy environment file:
-```bash
-cp .env.example .env
-```
+
+   ```bash
+   cp .env.example .env
+   ```
 
 4. Edit `.env` with your configuration
 
 5. Start development server:
-```bash
-npm run dev
-```
+
+   ```bash
+   npm run dev
+   ```
 
 ### Configuration
 
@@ -59,7 +63,7 @@ npm run dev
 
 ## Project Structure
 
-```
+```text
 src/
 ├── components/
 │   └── shared/          # Reusable UI components
@@ -94,7 +98,7 @@ Using [Task](https://taskfile.dev/) runner (recommended):
 task install
 
 # Start development server
-task dev
+task dev:start
 
 # Build for production
 task build
@@ -102,11 +106,23 @@ task build
 # Preview production build
 task preview
 
-# Lint and auto-fix
+# Lint (check only)
 task lint
+
+# Lint and auto-fix
+task lint:fix
 
 # Format code
 task format
+
+# Check code formatting
+task format:check
+
+# Run npm security audit
+task security:audit
+
+# Lint Markdown files
+task lint:markdown
 
 # Run all CI checks
 task ci:all
@@ -127,32 +143,35 @@ task clean
 npm run dev       # Start development server
 npm run build     # Build for production
 npm run preview   # Preview production build
-npm run lint      # Lint and auto-fix
+npm run lint      # Lint (check only)
+npm run lint:fix  # Lint and auto-fix
 npm run format    # Format code
 ```
 
 ### Adding a New Page
 
 1. Create a view component in `src/views/`:
-```vue
-<script setup>
-// Component logic
-</script>
 
-<template>
-  <!-- Component template -->
-</template>
-```
+   ```vue
+   <script setup>
+   // Component logic
+   </script>
+
+   <template>
+     <!-- Component template -->
+   </template>
+   ```
 
 2. Add route in `src/router/index.js`:
-```javascript
-{
-  path: '/new-page',
-  name: 'NewPage',
-  component: () => import('@/views/NewPage.vue'),
-  meta: { title: 'New Page' },
-}
-```
+
+   ```javascript
+   {
+     path: '/new-page',
+     name: 'NewPage',
+     component: () => import('@/views/NewPage.vue'),
+     meta: { title: 'New Page' },
+   }
+   ```
 
 ### Using the API Service
 
@@ -221,6 +240,7 @@ docker run -p 80:80 template-web:latest
 ### Changing Theme Colors
 
 Edit `src/composables/useTheme.js`:
+
 ```javascript
 const getThemeConfig = () => ({
   common: {

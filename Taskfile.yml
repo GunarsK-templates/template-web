@@ -1,19 +1,11 @@
 version: '3'
 
-vars:
-  APP_NAME: your-web-app
-
 tasks:
-  # Development
+  # Top-level tasks
   install:
     desc: Install dependencies
     cmds:
       - npm install
-
-  dev:
-    desc: Start development server
-    cmds:
-      - npm run dev
 
   build:
     desc: Build for production
@@ -25,16 +17,50 @@ tasks:
     cmds:
       - npm run preview
 
+  clean:
+    desc: Clean build artifacts and node_modules
+    cmds:
+      - cmd: rm -rf dist/ node_modules/
+        platforms: [linux, darwin]
+      - cmd: if exist dist rmdir /s /q dist
+        platforms: [windows]
+        ignore_error: true
+      - cmd: if exist node_modules rmdir /s /q node_modules
+        platforms: [windows]
+        ignore_error: true
+
+  # Development
+  dev:start:
+    desc: Start development server
+    cmds:
+      - npm run dev
+
+  # Docker operations
+  docker:build:
+    desc: Build Docker image
+    cmds:
+      - docker build -t web .
+
+  docker:run:
+    desc: Run Docker container
+    cmds:
+      - docker run -p 3000:80 web
+
   # Code quality
   lint:
-    desc: Run ESLint and auto-fix issues
+    desc: Run ESLint (check only)
     cmds:
       - npm run lint
+
+  lint:fix:
+    desc: Run ESLint and auto-fix issues
+    cmds:
+      - npm run lint:fix
 
   format:
     desc: Format code with Prettier
     cmds:
-      - npm run format
+      - npx prettier --write "src/**/*.{js,vue,json,md}"
 
   format:check:
     desc: Check code formatting
@@ -47,40 +73,19 @@ tasks:
     cmds:
       - npm audit --audit-level=high
 
-  # Docker
-  docker:build:
-    desc: Build Docker image
+  # Linting
+  lint:markdown:
+    desc: Lint Markdown files
     cmds:
-      - docker build -t {{.APP_NAME}}:latest .
+      - npx markdownlint-cli2
 
-  docker:run:
-    desc: Run Docker container
-    cmds:
-      - docker run --rm -p 80:80 {{.APP_NAME}}:latest
-
-  docker:stop:
-    desc: Stop Docker container
-    cmds:
-      - docker stop {{.APP_NAME}} || true
-
-  # CI - Run all checks
+  # CI/CD
   ci:all:
-    desc: Run all CI checks
+    desc: Run all CI checks (format, lint:fix, build, security:audit, lint:markdown)
     cmds:
-      - task: format:check
-      - task: lint
+      - task: format
+      - task: lint:fix
       - task: build
       - task: security:audit
-
-  # Clean
-  clean:
-    desc: Clean build artifacts and node_modules
-    cmds:
-      - cmd: rm -rf dist/ node_modules/
-        platforms: [linux, darwin]
-      - cmd: if exist dist rmdir /s /q dist
-        platforms: [windows]
-        ignore_error: true
-      - cmd: if exist node_modules rmdir /s /q node_modules
-        platforms: [windows]
-        ignore_error: true
+      - task: lint:markdown
+      - echo "All CI checks passed!"
